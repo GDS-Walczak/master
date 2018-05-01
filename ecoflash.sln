@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecoflash", "ecoflash\ecoflash.csproj", "{BC0687EC-D5A1-49C0-A3EC-45F793626259}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC0687EC-D5A1-49C0-A3EC-45F793626259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC0687EC-D5A1-49C0-A3EC-45F793626259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC0687EC-D5A1-49C0-A3EC-45F793626259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC0687EC-D5A1-49C0-A3EC-45F793626259}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33806C33-AAD7-4D54-A6B4-2340E93D7EEC}
+	EndGlobalSection
+EndGlobal
