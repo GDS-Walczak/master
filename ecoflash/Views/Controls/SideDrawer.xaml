@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="ecoflash.Views.Controls.SideDrawer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ecoflash.Views.Controls"
+             xmlns:converters="clr-namespace:ecoflash.Views.Converters"
+             xmlns:ViewModel="clr-namespace:ecoflash.ViewModel"
+             DataContext="{Binding Source={StaticResource Locator}, Path=SideDrawViewModel}"
+             mc:Ignorable="d" 
+             xmlns:control="clr-namespace:ecoflash.Views.Controls"
+             d:DesignHeight="898" d:DesignWidth="420">
+    <UserControl.Resources>
+
+        <converters:DoubleToCelciusConverter x:Key="CelciusConverter"></converters:DoubleToCelciusConverter>
+        
+        <Storyboard x:Key="sbShowLeftMenu" >
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="-380,0,0,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard x:Key="sbHideLeftMenu">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="-380,0,0,0" AccelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+
+        <Image x:Name="dismiss_icon" x:Key="dismiss_icon" Source="/Resources/dismiss_icon.png" />
+        <Image x:Key="hide_drawer_icon" Source="/Resources/hide_drawer_button.png" Width="15" Height="18"/>
+        <Image x:Key="show_drawer_icon" Source="/Resources/show_drawer_icon.png" Width="15" Height="18" />
+        <BitmapImage x:Key="info_icon" UriSource="/Resources/info_icon.png" />
+        <Image x:Key="next_chevron" Source="/Resources/next_chevron.png" />
+        <Image x:Key="previous_chevron" Source="/Resources/previous_chevron.png" />
+
+
+        <Style x:Key="HeaderLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="#FF9b9b9b" />
+            <Setter Property="FontFamily" Value="Helvetica" />
+        </Style>
+
+        <Style x:Key="SliderRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border SnapsToDevicePixels="True" Background="Red"  BorderThickness="1" BorderBrush="OrangeRed" Height="3"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid>
+        <!-- Side Drawer -->
+        <StackPanel Panel.ZIndex="2" Name="pnlLeftMenu" Orientation="Horizontal" Height="898" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top">
+            <Border BorderBrush="#994A4A4A" BorderThickness="0 0 1 0" Width="420" Background="White" >
+                <!-- Side Drawer Content -->
+                <StackPanel Orientation="Vertical">
+
+                    <!-- Navigation Button Container -->
+                    <StackPanel Orientation="Horizontal" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,24,0,0" >
+                        <StackPanel Orientation="Vertical">
+                            <Button Name="btnSettings" Background="Transparent" BorderBrush="Transparent" Click="btnSettings_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image x:Name="imgSettingsIcon" Source="/Resources/settings_icon.png" Height="30"/>
+                                    <Label Margin="12,0,0,0" Style="{StaticResource HeaderLabel}">Settings</Label>
+                                </StackPanel>
+                            </Button>
+                            <Rectangle Name="settingsUnderline" Height="2" Width="120" Panel.ZIndex="4" Fill="#FF007150" RadiusX="8" RadiusY="8">
+                                <Rectangle.Effect>
+                                    <DropShadowEffect ShadowDepth="2" Direction="270" Color="#FF4A4A4A" Opacity="0.5" BlurRadius="3"/>
+                                </Rectangle.Effect>
+                            </Rectangle>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Vertical" Margin="40,0,0,0">
+                            <Button Name="btnReports" Background="Transparent" BorderBrush="Transparent" Margin="0,0,0,0" Click="btnReports_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image x:Name="imgReportIcon" Source="/Resources/report_icon.png" Height="30"/>
+                                    <Label Margin="12,0,0,0" Style="{StaticResource HeaderLabel}">Reports</Label>
+                                </StackPanel>
+                            </Button>
+                            <Rectangle Name="reportsUnderline" Height="2" Width="120" Panel.ZIndex="4" Fill="#FF007150" Visibility="Hidden" RadiusX="8" RadiusY="8">
+                                <Rectangle.Effect>
+                                    <DropShadowEffect ShadowDepth="2" Direction="270" Color="#FF4A4A4A" Opacity="0.5" BlurRadius="3"/>
+                                </Rectangle.Effect>
+                            </Rectangle>
+                        </StackPanel>
+
+                        <Button Background="Transparent" BorderBrush="Transparent" Name="btnLeftMenuShow" Click="btnLeftMenuShow_Click" Content="{StaticResource show_drawer_icon}" VerticalAlignment="Top" Margin="38,12,0,0" Visibility="Collapsed"/>
+                        <Button Background="Transparent" BorderBrush="Transparent" Name="btnLeftMenuHide" Click="btnLeftMenuHide_Click" Content="{StaticResource hide_drawer_icon}"  VerticalAlignment="Top" Margin="38,12,0,0"/>
+
+                    </StackPanel>
+                    <!-- End Navigation Button Container -->
+
+                    <!-- Heater Controls -->
+                    <StackPanel Orientation="Vertical" Margin="80,50,0,0" Visibility="Visible" Name="settingsControls1" Height="560">
+                        <Label Style="{StaticResource HeaderLabel}">Pre-GLS Heater Temperature</Label>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Margin="0,40,0,0">
+                                <Image Source="/Resources/thermometer_icon.png" Width="75"/>
+                                <Label Name="lblTempPreGLS" FontSize="16" Margin="16,8,0,0" Content="{Binding PreGLSTemp, Converter={StaticResource CelciusConverter}}"></Label>
+                            </StackPanel>
+                            <control:FlashSlider Margin="80,40,0,0" x:Name="sliderPostHeater"/>
+                        </StackPanel>
+
+                        <Label Style="{StaticResource HeaderLabel}" Margin="0,50,0,0">MMV Heater Temperature</Label>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Margin="0,40,0,0">
+                                <Image Source="/Resources/thermometer_icon.png" Width="75"/>
+                                <Label Name="lblMMVHeaterTemperature" FontSize="16" Margin="16,8,0,0">50 ℉</Label>
+                            </StackPanel>
+                            <control:FlashSlider Margin="80,40,0,0" x:Name="sliderMMVHeater"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <!-- End Heater Controls -->
+
+                    <!-- Flow Rate Controls -->
+                    <StackPanel Orientation="Vertical" Margin="40,50,0,0" Visibility="Collapsed" Name="settingsControls2" Height="560">
+                        <Label Style="{StaticResource HeaderLabel}">CO₂ Pressure</Label>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Margin="0,40,0,0">
+                                <Image Source="/Resources/flow-icon.png" Width="75"/>
+                                <Label Name="lblCO2Pressure" FontSize="16" Margin="16,8,0,0">60 Bar</Label>
+                            </StackPanel>
+                            <control:FlashSlider Margin="80,30,0,0" x:Name="sliderCO2Pressure"/>
+                        </StackPanel>
+
+                        <Label Style="{StaticResource HeaderLabel}" Margin="0,50,0,0">CO₂ Flow Rate</Label>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Margin="0,40,0,0">
+                                <Image Source="/Resources/flow-icon.png" Width="75"/>
+                                <Label Name="lblCO2FlowRateStart" FontSize="16" Margin="16,8,0,0">50 ℉</Label>
+                            </StackPanel>
+                            <control:FlashSlider Margin="20,40,0,0" x:Name="sliderCO2FlowRateStart"/>
+                            <control:FlashSlider Margin="20,40,0,0" x:Name="sliderCO2FlowRateEnd"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                    <!-- End FLow Rate Controls -->
+
+                    <!-- Info Bar -->
+                    <StackPanel Orientation="Horizontal" Margin="40,50,0,0">
+                        <Image Source="{StaticResource info_icon}" Width="34" />
+                        <TextBlock Name="lblHeaterSettingsInfoMsg" FontSize="16" TextWrapping="WrapWithOverflow" Width="280" Margin="16,0,0,0">Press Init to intialize the system with these parameters</TextBlock>
+                    </StackPanel>
+
+
+                    <!-- Page Indicator Control -->
+                    <StackPanel Orientation="Horizontal" Margin="40,50,0,0">
+                        <Button Name="btnSettingsBack" Content="{StaticResource previous_chevron}" Height="22" Background="Transparent" BorderBrush="Transparent" Click="btnSettingsBack_Click"/>
+                        <Ellipse Width="15" Height="15" Fill="#aa000000" Stroke="Black" Margin="120,0,0,0" Name="pageIndicatorCircle1"/>
+                        <Ellipse Width="15" Height="15" Fill="Transparent" Stroke="Black" Margin="16,0,0,0" Name="pageIndicatorCircle2"/>
+                        <Ellipse Width="15" Height="15" Fill="Transparent" Stroke="Black" Margin="16,0,0,0" Name="pageIndicatorCircle3" Visibility="Hidden"/>
+                        <Button Name="btnSettingsNext" Content="{StaticResource next_chevron}" Height="22" Background="Transparent" Margin="110,0,0,0" BorderBrush="Transparent" Click="btnSettingsNext_Click"/>
+                    </StackPanel>
+
+                </StackPanel>
+                <!-- End Side Panel Content -->
+            </Border>
+        </StackPanel>
+        <!-- End Side Panel -->
+    </Grid>
+</UserControl>

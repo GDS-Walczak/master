@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="ecoflash.Views.Controls.FlashSlider"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="160" d:DesignWidth="120" >
+    <UserControl.Resources>
+
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#FF9b9b9b" />
+            <Setter Property="FontFamily" Value="Helvetica" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <SolidColorBrush x:Key="HorizontalSliderTrackNormalBackground" Color="#cc4a4a4a"/>
+        <LinearGradientBrush x:Key="HorizontalSliderTrackNormalBorder" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#cc4a4a4a" Offset="0.9"/>
+            <GradientStop Color="White" Offset="0.1"/>
+        </LinearGradientBrush>
+
+        <Style x:Key="CustomThumbForSlider" TargetType="{x:Type Thumb}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Rectangle Fill="#ffEF9494" Width="8" Height="24" RadiusX="4" RadiusY="4" Margin="0,-0.66,0,0">
+                            <Rectangle.Effect>
+                                <DropShadowEffect ShadowDepth="2" Direction="0" Color="#FF4A4A4A" Opacity="0.5" BlurRadius="3"/>
+                            </Rectangle.Effect>
+                        </Rectangle>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="SliderRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Rectangle Fill="Transparent" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MyCustomStyleForSlider" TargetType="{x:Type Slider}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Slider}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TickBar x:Name="TopTick" Visibility="Collapsed" Fill="{TemplateBinding Foreground}" Placement="Top" Height="4" Grid.Row="0"/>
+                                <TickBar x:Name="BottomTick" Visibility="Collapsed" Fill="{TemplateBinding Foreground}" Placement="Bottom" Height="4" Grid.Row="0"/>
+                                <Border x:Name="TrackBackground" Background="{StaticResource HorizontalSliderTrackNormalBackground}" BorderBrush="{StaticResource HorizontalSliderTrackNormalBorder}" 
+                                        BorderThickness="1" CornerRadius="1" Margin="5,0" VerticalAlignment="Center" Height="4.0" Grid.Row="1" >
+                                    <Canvas Margin="-6,-1">
+                                        <Rectangle Visibility="Hidden" x:Name="PART_SelectionRange" Height="4.0" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" 
+                                                   Stroke="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" StrokeThickness="1.0"/>
+                                    </Canvas>
+                                </Border>
+                                <Track x:Name="PART_Track" Grid.Row="1">
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static Slider.DecreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}"/>
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}"/>
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb x:Name="Thumb" Background="Black" Style="{StaticResource CustomThumbForSlider}"/>
+                                    </Track.Thumb>
+                                    
+                                </Track>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        
+
+    </UserControl.Resources>
+    <Grid>
+
+        <StackPanel Orientation="Vertical">
+            <Label Name="lblSliderMaxValue">300 ℉</Label>
+            <Slider VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-22,32,0,0" Style="{StaticResource MyCustomStyleForSlider}" x:Name="sliderPostHeaterTemp" Orientation="Horizontal" Height="30" Value="50" Width="100" Minimum="0" Maximum="300" RenderTransformOrigin="0.5,0.5" >
+                <Slider.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Slider.RenderTransform>
+            </Slider>
+            <Label Name="lblSliderMinValue" Width="120" Margin="0,40,0,0" HorizontalContentAlignment="Center">0 ℉</Label>
+        </StackPanel>
+
+        <Label Name="lblSliderSetPoint" VerticalAlignment="Center" HorizontalAlignment="Right">50 ℉</Label>
+    </Grid>
+</UserControl>

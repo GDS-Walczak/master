@@ -1,0 +1,126 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:control="clr-namespace:ecoflash.Views.Controls"
+        xmlns:ViewModel="clr-namespace:ecoflash.ViewModel" x:Class="ecoflash.MainWindow"
+        mc:Ignorable="d"
+        
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+        Title="Eco Flash" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" x:Name="dashboard">
+    <Window.Resources>
+
+
+
+        <Image x:Name="dismiss_icon" x:Key="dismiss_icon" Source="/Resources/dismiss_icon.png" />
+        <Image x:Key="hide_drawer_icon" Source="/Resources/hide_drawer_button.png" Width="15" Height="18"/>
+        <Image x:Key="show_drawer_icon" Source="/Resources/show_drawer_icon.png" Width="15" Height="18" />
+        <BitmapImage x:Key="info_icon" UriSource="/Resources/info_icon.png" />
+        <Image x:Key="next_chevron" Source="/Resources/next_chevron.png" />
+        <Image x:Key="previous_chevron" Source="/Resources/previous_chevron.png" />
+
+
+        <Style x:Key="HeaderLabel" TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="#FF9b9b9b" />
+            <Setter Property="FontFamily" Value="Helvetica" />
+        </Style>
+
+        <Style x:Key="SliderRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Border SnapsToDevicePixels="True" Background="Red"  BorderThickness="1" BorderBrush="OrangeRed" Height="3"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    
+    <Grid>
+
+        <Menu Background="Transparent" Margin="40,25,0,0">
+            <MenuItem Header="_File" FontSize="16">
+                <MenuItem Header="_New" Background="White"/>
+                <MenuItem Header="_Open" Background="White" BorderBrush="White"/>
+                <MenuItem Header="_Save" Background="White"/>
+                <Separator />
+                <MenuItem Header="_Exit" Background="White"/>
+            </MenuItem>
+            <MenuItem Header="_Sample" Margin="40,0,0,0" FontSize="16"/>
+            <MenuItem Header="_Run" FontSize="16" Margin="40,0,0,0" Background="White">
+                <MenuItem Header="_New" Background="White"/>
+                <MenuItem Header="_Open" Background="White"/>
+                <MenuItem Header="_Save" Background="white"/>
+                <Separator />
+                <MenuItem Header="_Exit" Background="white"/>
+            </MenuItem>
+
+        </Menu>
+
+        <Image x:Name="asi_logo" Source="/Resources/asi-logo.png" Height="40" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,20,200,0"/>
+
+        <Button x:Name="btnClose" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,80,0" Cursor="Hand" Width="30" Height="30" Click="btnClose_Click" Background="Transparent" BorderBrush="Transparent" Content="{StaticResource dismiss_icon}">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="2" Opacity="0.5"/>
+            </Button.Effect>
+        </Button>
+
+        <Separator Width="1920" Height="2" Margin="0,75,0,0" VerticalAlignment="Top">
+            <Separator.Effect>
+                <DropShadowEffect ShadowDepth="2" Direction="270" Color="#FF4A4A4A" Opacity="0.5" BlurRadius="5"/>
+            </Separator.Effect>
+        </Separator>
+
+        <!-- Side Drawer -->
+        <control:SideDrawer Margin="0,80,0,0"/>
+        <!-- End Side Panel -->
+
+        <Separator Width="1920" Height="2" Margin="0,0,0,98" VerticalAlignment="Bottom">
+            <Separator.Effect>
+                <DropShadowEffect ShadowDepth="2" Direction="270" Color="#FF4A4A4A" Opacity="0.5" BlurRadius="5"/>
+            </Separator.Effect>
+        </Separator>
+
+        <StackPanel Visibility="Hidden" x:Name="spDebug" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Height="800" Width="1200" Margin="450,100,0,0">
+
+            <TextBox x:Name="tbDebug" Height="600"/>
+            <Button Width="60" Height="40" HorizontalAlignment="Left" Margin="24,16,0,0" Content="Clear"/>
+        </StackPanel>
+
+
+        <!-- Action & Status Panel -->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="40,960,0,0">
+
+            <Image Source="{StaticResource info_icon}" Width="34" />
+            <TextBlock x:Name="lblStatusMessage" TextWrapping="WrapWithOverflow" Margin="16,8,0,0" FontSize="24" Width="1000"><Run Text="{Binding StatusMessage, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/></TextBlock>
+
+            <Button x:Name="btnInit" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" Margin="250,0,0,0" Command="{Binding InitCommand, Mode=OneWay}" >
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="imgInit" Source="{Binding InitIconSource, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Height="30" />
+                    <Label Margin="12,0,0,0" Style="{StaticResource HeaderLabel}" Content="{Binding InitTest}"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnStart" Background="Transparent" BorderBrush="Transparent" Margin="30,0,0,0" >
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="imgStart" Source="/Resources/start-icon-disabled.png" Height="30"/>
+                    <Label Margin="12,0,0,0" Style="{StaticResource HeaderLabel}" Content="Start"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="btnStop" Background="Transparent" BorderBrush="Transparent" Margin="30,0,0,0" Command="{Binding StopCommand, Mode=OneWay}">
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="imgStop" Source="/Resources/stop-icon-disabled.png" Height="30"/>
+                    <Label Margin="12,0,0,0" Style="{StaticResource HeaderLabel}" Content="Stop"/>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

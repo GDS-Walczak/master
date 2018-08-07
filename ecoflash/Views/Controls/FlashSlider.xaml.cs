@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ecoflash
+namespace ecoflash.Views.Controls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for FlashSlider.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class FlashSlider : UserControl
     {
-        public MainWindow()
+        public FlashSlider()
         {
             InitializeComponent();
         }

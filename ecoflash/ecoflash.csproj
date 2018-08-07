@@ -34,8 +34,71 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataq, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9767f47f9c295223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dep\Dataq.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataq.Common, Version=1.0.0.1, Culture=neutral, PublicKeyToken=9767f47f9c295223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dep\Dataq.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataq.Devices, Version=2.1.0.0, Culture=neutral, PublicKeyToken=9767f47f9c295223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dep\Dataq.Devices.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataq.Devices.Main, Version=2.1.0.0, Culture=neutral, PublicKeyToken=9767f47f9c295223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dep\Dataq.Devices.Main.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataq.Platforms, Version=2.1.0.0, Culture=neutral, PublicKeyToken=9767f47f9c295223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dep\Dataq.Platforms.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataq.Protocols, Version=2.1.0.0, Culture=neutral, PublicKeyToken=9767f47f9c295223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dep\Dataq.Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataq.Simple, Version=1.0.0.2, Culture=neutral, PublicKeyToken=9767f47f9c295223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dep\Dataq.Simple.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="LibUsbDotNet, Version=2.2.8.104, Culture=neutral, PublicKeyToken=c677239abe1e02a9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dep\LibUsbDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.5.4\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,7 +117,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\Controls\FlashSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\SideDrawer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -62,7 +133,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="DataEntities\Procedure.cs" />
+    <Compile Include="Devices\DATAQManager.cs" />
+    <Compile Include="Devices\SerialDevice.cs" />
+    <Compile Include="Models\StateManager.cs" />
+    <Compile Include="Models\SystemManager.cs" />
+    <Compile Include="Utilities\Messages\DataAvailableMessage.cs" />
+    <Compile Include="Utilities\Messages\UpdateStatusMessage.cs" />
+    <Compile Include="Utilities\Messenger.cs" />
+    <Compile Include="Utilities\Messages\ISubscriber.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SideDrawerViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\Controls\FlashSlider.xaml.cs">
+      <DependentUpon>FlashSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SideDrawer.xaml.cs">
+      <DependentUpon>SideDrawer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Converters\ActionButtonStateConverter.cs" />
+    <Compile Include="Views\Converters\DoubleToCelciusConverter.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -85,6 +176,25 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Devices\common\chdevice.c" />
+    <Content Include="Devices\common\chdevice.h" />
+    <Content Include="Devices\common\comfce.c" />
+    <Content Include="Devices\common\comfce.h" />
+    <Content Include="Devices\common\com_rs232.c" />
+    <Content Include="Devices\common\com_rs232.h" />
+    <Content Include="Devices\common\list.c" />
+    <Content Include="Devices\common\list.h" />
+    <Content Include="Devices\common\memwatch.c" />
+    <Content Include="Devices\common\memwatch.h" />
+    <Content Include="Devices\gilson\xfc203b.c" />
+    <Content Include="Devices\gilson\xfc203b.h" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -92,6 +202,50 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\dismiss_icon.png" />
+    <Resource Include="Resources\hide_drawer_button.png" />
+    <Resource Include="Resources\show_drawer_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\asi-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\settings_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\report_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\thermometer_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\info_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\next_chevron.png" />
+    <Resource Include="Resources\previous_chevron.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\init-icon-disabled.png" />
+    <Resource Include="Resources\init-icon-enabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\start-icon-enabled.png" />
+    <Resource Include="Resources\stop-icon-enabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\start-icon-disabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stop-icon-disabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\flow-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
