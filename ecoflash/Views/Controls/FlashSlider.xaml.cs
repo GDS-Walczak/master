@@ -33,7 +33,6 @@ namespace ecoflash.Views.Controls
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private DoubleToCelciusConverter tempConverter = new DoubleToCelciusConverter();
 
-        private IPIDController tempController;
 
         public FlashSlider()
         {
@@ -52,9 +51,7 @@ namespace ecoflash.Views.Controls
 
             SetPointChanged?.Invoke(e.NewValue);
 
-            IPIDController tempController = SimpleIoc.Default.GetInstance<IPIDController>();
-            if (tempController != null)
-                tempController.SetPoint = e.NewValue;
+            
         }
 
         private void onSetPointChangedManually(object sender, TextChangedEventArgs e)
