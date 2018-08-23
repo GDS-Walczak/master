@@ -104,5 +104,6 @@ namespace ecoflash.Views.Controls
                 pageIndicatorCircle1.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#aa000000"));
             }
         }
+
     }
 }

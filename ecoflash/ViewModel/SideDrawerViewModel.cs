@@ -37,6 +37,13 @@ namespace ecoflash.ViewModel
             set { _preGLSTemperature = value; RaisePropertyChanged("PreGLSTemp"); }
         }
 
+        private double _preGLSTemperatureSetPoint = 0;
+        public double PreGLSTempSetPoint
+        {
+            get { return _preGLSTemperatureSetPoint; }
+            set { _preGLSTemperatureSetPoint = value; RaisePropertyChanged("PreGLSTempSetPoint"); }
+        }
+
         private void onAnalogDataReceived(double reading)
         {
             // TODO this should use a converter

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
-             d:DesignHeight="160" d:DesignWidth="120" >
+             d:DesignHeight="160" d:DesignWidth="140" >
     <UserControl.Resources>
 
         <Style TargetType="Label">
@@ -25,7 +25,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Thumb}">
-                        <Rectangle Fill="#ffEF9494" Width="8" Height="24" RadiusX="4" RadiusY="4" Margin="0,-0.66,0,0">
+                        <Rectangle Fill="#ffEF9494" Width="28" Height="28" RadiusX="18" RadiusY="18" Margin="0,0,0,0">
                             <Rectangle.Effect>
                                 <DropShadowEffect ShadowDepth="2" Direction="0" Color="#FF4A4A4A" Opacity="0.5" BlurRadius="3"/>
                             </Rectangle.Effect>
@@ -93,20 +93,21 @@
     <Grid>
 
         <StackPanel Orientation="Vertical">
-            <Label Name="lblSliderMaxValue">300 ℉</Label>
-            <Slider VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-22,32,0,0" Style="{StaticResource MyCustomStyleForSlider}" x:Name="sliderPostHeaterTemp" Orientation="Horizontal" Height="30" Value="50" Width="100" Minimum="0" Maximum="300" RenderTransformOrigin="0.5,0.5" >
+            <Label Name="lblSliderMaxValue" HorizontalAlignment="Left">100 °C</Label>
+            <Slider VerticalAlignment="Center" HorizontalAlignment="Left" Margin="-22,32,0,0" Style="{StaticResource MyCustomStyleForSlider}" x:Name="slider" Orientation="Horizontal" Height="30" Value="50" Width="100" Minimum="0" Maximum="100" RenderTransformOrigin="0.5,0.5" ValueChanged="onSliderChanged" >
                 <Slider.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
-                        <RotateTransform Angle="90"/>
+                        <RotateTransform Angle="-90"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Slider.RenderTransform>
             </Slider>
-            <Label Name="lblSliderMinValue" Width="120" Margin="0,40,0,0" HorizontalContentAlignment="Center">0 ℉</Label>
+            <Label Name="lblSliderMinValue" Margin="10,40,0,0" HorizontalAlignment="Left" >0 °C</Label>
         </StackPanel>
 
-        <Label Name="lblSliderSetPoint" VerticalAlignment="Center" HorizontalAlignment="Right">50 ℉</Label>
+        <!--<Label Name="lblSliderSetPoint" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,0,0,0">50 ℉</Label>-->
+        <TextBox Foreground="Gray" Name="lblSliderSetPoint" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60,0,0,0" Background="Transparent" BorderThickness="0" TextChanged="onSetPointChangedManually">50 ℉</TextBox>
     </Grid>
 </UserControl>

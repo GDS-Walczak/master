@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 using ecoflash.Devices;
+using ecoflash.Models.Controllers;
 using GalaSoft.MvvmLight.Ioc;
 
 namespace ecoflash.Models
@@ -55,6 +57,13 @@ namespace ecoflash.Models
                 // Intialize Comms with DATAQ
                 IAnalogUSBReader dataq = SimpleIoc.Default.GetInstance<IAnalogUSBReader>();
                 dataq.Initialize();
+
+                IAnalogUSBWriter analogOut = SimpleIoc.Default.GetInstance<IAnalogUSBWriter>();
+                analogOut.Initialize();
+
+                IPIDController tempController = SimpleIoc.Default.GetInstance<IPIDController>();
+                tempController.Start();
+                
 
                 State = States.Initializing;
             }

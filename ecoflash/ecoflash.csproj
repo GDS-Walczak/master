@@ -84,6 +84,10 @@
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="MccDaq, Version=2.7.0.0, Culture=neutral, PublicKeyToken=a37eefcf5c6ca10a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dep\MccDaq.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.5.4\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -135,7 +139,13 @@
     </Compile>
     <Compile Include="DataEntities\Procedure.cs" />
     <Compile Include="Devices\DATAQManager.cs" />
+    <Compile Include="Devices\DeviceType.cs" />
+    <Compile Include="Devices\IAnalogUSBWriter.cs" />
+    <Compile Include="Devices\OmegaManager.cs" />
     <Compile Include="Devices\SerialDevice.cs" />
+    <Compile Include="Models\ConfigurationManager.cs" />
+    <Compile Include="Models\Controllers\IPIDController.cs" />
+    <Compile Include="Models\Controllers\TemperatureController.cs" />
     <Compile Include="Models\StateManager.cs" />
     <Compile Include="Models\SystemManager.cs" />
     <Compile Include="Utilities\Messages\DataAvailableMessage.cs" />

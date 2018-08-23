@@ -85,7 +85,7 @@ namespace ecoflash.Devices
                         await device.AcquisitionStartAsync();
 
                         taskRead = StartReading();
-                        taskRead.Start();
+                        //taskRead.Start();
                         //await taskRead;
                     }
                     else

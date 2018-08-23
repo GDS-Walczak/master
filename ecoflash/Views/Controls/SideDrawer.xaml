@@ -99,7 +99,7 @@
                                 <Image Source="/Resources/thermometer_icon.png" Width="75"/>
                                 <Label Name="lblTempPreGLS" FontSize="16" Margin="16,8,0,0" Content="{Binding PreGLSTemp, Converter={StaticResource CelciusConverter}}"></Label>
                             </StackPanel>
-                            <control:FlashSlider Margin="80,40,0,0" x:Name="sliderPostHeater"/>
+                            <control:FlashSlider Margin="80,40,0,0" x:Name="sliderPostHeater" ToolTip="Set the set point for the Pre-GLS heater by using the slider or manually typing the temperature in Farenheight" />
                         </StackPanel>
 
                         <Label Style="{StaticResource HeaderLabel}" Margin="0,50,0,0">MMV Heater Temperature</Label>

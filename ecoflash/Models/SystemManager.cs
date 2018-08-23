@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
 
 using ecoflash.Devices;
+using ecoflash.Models.Controllers;
 
 namespace ecoflash.Models
 {
@@ -43,6 +44,8 @@ namespace ecoflash.Models
 
                 // Register dependencies
                 SimpleIoc.Default.Register<IAnalogUSBReader, DATAQManager>();
+                SimpleIoc.Default.Register<IAnalogUSBWriter, OmegaManager>();
+                SimpleIoc.Default.Register<IPIDController, TemperatureController>();
             }
         }
     }
